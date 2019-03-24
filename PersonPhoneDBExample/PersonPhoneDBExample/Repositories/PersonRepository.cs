@@ -18,11 +18,6 @@ namespace PersonPhoneDBExample.Repositories
             _persondbContext.SaveChanges();
         }
 
-        public void Delete(long id)
-        {
-            throw new NotImplementedException();
-        }
-
         public List<Person> Read()
         {
             var persons = _persondbContext.Person
@@ -33,12 +28,37 @@ namespace PersonPhoneDBExample.Repositories
 
         public Person Read(long id)
         {
-            throw new NotImplementedException();
+            var person = _persondbContext.Person
+                .FirstOrDefault(p => p.Id == id);
+
+            return person;
         }
 
         public void Update(long id, Person person)
         {
-            throw new NotImplementedException();
+            var isPersonAlive = Read(id);
+            if (isPersonAlive != null)
+            {
+                _persondbContext.Update(person);
+                _persondbContext.SaveChanges();
+                Console.WriteLine("Tiedot tallennettu onnistuneesti!");
+
+            }
+            else
+                Console.WriteLine("Tietojen tallennus epäonnistui - henkilöä ei ole olemassa.");
+        }
+
+        public void Delete(long id)
+        {
+            var deletedPerson = Read(id);
+            if (deletedPerson != null)
+            {
+                _persondbContext.Person.Remove(deletedPerson);
+                _persondbContext.SaveChanges();
+                Console.WriteLine("Tiedot poistettu onnistuneesti!");
+            }
+            else
+                Console.WriteLine("Tiedon poisto EI onnistunut - ID tuntematon");
         }
     }
 }
