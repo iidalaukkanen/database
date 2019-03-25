@@ -23,8 +23,7 @@ namespace PersonPhoneDBExample
                 new Phone{Type="työ", Number = "0100100"}
             };
 
-            personRepository.Create(newPerson);
-            personRepository.Read();
+            string msg = "";
 
             ConsoleKeyInfo cki;
             do
@@ -35,31 +34,40 @@ namespace PersonPhoneDBExample
                     case ConsoleKey.C:
                         Console.Clear();
                         personRepository.Create(newPerson);
+                        msg = "Tiedot lisätty onnistuneesti!" +
+                            "\n____________________________________\nPaina nappulaa jatkaaksesi.";
                         break;
 
                     case ConsoleKey.R:
                         Console.Clear();
                         personRepository.Read();
+                        msg = "\n____________________________________\nPaina nappulaa jatkaaksesi.";
                         break;
 
                     case ConsoleKey.U:
                         Console.Clear();
                         personRepository.Update(UserInputId(), newPerson);
-                            break;
+                        msg = "\n____________________________________\nPaina nappulaa jatkaaksesi.";
+                        break;
 
                     case ConsoleKey.D:
                         Console.Clear();
                         personRepository.Delete(UserInputId());
+                        msg = "\n____________________________________\nPaina nappulaa jatkaaksesi.";
                         break;
 
                     case ConsoleKey.X:
                         Console.Clear();
-                        Console.WriteLine("Kiitos käynnistä, tervetuloa uudelleen!");
+                        msg = "Kiitos käynnistä, tervetuloa uudelleen!";
                         break;
 
                     default:
+                        Console.Clear();
+                        msg = "Painoit väärää nappulaa! Paina nappulaa aloittaaksesi alusta.";
                         break;
                 }
+                Console.WriteLine(msg);
+                Console.ReadKey();
 
             } while (cki.Key != ConsoleKey.X);
         }
@@ -79,6 +87,7 @@ namespace PersonPhoneDBExample
 
         private static long UserInputId()
         {
+            Console.WriteLine("Syötä ID:");
             while (true)
             {
                 if (long.TryParse(Console.ReadLine(), out long id))
