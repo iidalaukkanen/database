@@ -1,5 +1,6 @@
 ﻿using PersonPhoneDBExample.Models;
 using PersonPhoneDBExample.Repositories;
+using PersonPhoneDBExample.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,16 +13,7 @@ namespace PersonPhoneDBExample
     {
         static void Main(string[] args)
         {
-            PersonRepository personRepository = new PersonRepository();
-
-            Person newPerson = new Person();
-            newPerson.Name = "Ville-Petteri Galle";
-            newPerson.Age = 31;
-            newPerson.Phone = new List<Phone>
-            {
-                new Phone{Type="koti", Number = "020202"},
-                new Phone{Type="työ", Number = "0100100"}
-            };
+            UIModel uiModel = new UIModel();
 
             string msg = "";
 
@@ -33,26 +25,32 @@ namespace PersonPhoneDBExample
                 {
                     case ConsoleKey.C:
                         Console.Clear();
-                        personRepository.Create(newPerson);
+                        uiModel.CreatePerson();
                         msg = "Tiedot lisätty onnistuneesti!" +
                             "\n____________________________________\nPaina nappulaa jatkaaksesi.";
                         break;
 
                     case ConsoleKey.R:
                         Console.Clear();
-                        personRepository.Read();
+                        uiModel.ReadList();
+                        msg = "\n____________________________________\nPaina nappulaa jatkaaksesi.";
+                        break;
+
+                    case ConsoleKey.I:
+                        Console.Clear();
+                        uiModel.ReadById(UserInputId());
                         msg = "\n____________________________________\nPaina nappulaa jatkaaksesi.";
                         break;
 
                     case ConsoleKey.U:
                         Console.Clear();
-                        personRepository.Update(UserInputId(), newPerson);
+                        uiModel.UpdatePerson();
                         msg = "\n____________________________________\nPaina nappulaa jatkaaksesi.";
                         break;
 
                     case ConsoleKey.D:
                         Console.Clear();
-                        personRepository.Delete(UserInputId());
+                        uiModel.DeletePerson(UserInputId());
                         msg = "\n____________________________________\nPaina nappulaa jatkaaksesi.";
                         break;
 
@@ -68,6 +66,7 @@ namespace PersonPhoneDBExample
                 }
                 Console.WriteLine(msg);
                 Console.ReadKey();
+                Console.Clear();
 
             } while (cki.Key != ConsoleKey.X);
         }
@@ -76,7 +75,8 @@ namespace PersonPhoneDBExample
         {
             Console.WriteLine("TIETOKANTAOHJELMOINTITEHTÄVÄ 1:\n\n" +
                 "[C] Lisää tietokantaan uusi tietue.\n" +
-                "[R] Lue tietokannasta tietoja.\n" +
+                "[R] Lue tietokannan tiedot.\n" +
+                "[I] Lue yhden henkiön tiedot tietokannasta.\n" +
                 "[U] Päivitä henkilön tiedot.\n" +
                 "[D] Poista henkilö tietokannasta.\n" +
                 "[X] Poistu ohjelmasta.\n");
