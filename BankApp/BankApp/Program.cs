@@ -19,6 +19,13 @@ namespace BankApp
             {
                 Console.Write(b.Name + " ");
             }
+
+            var customers = _customerRepository.ReadCustomers();
+
+            foreach (var c in customers)
+            {
+                Console.Write(c.Firstname + " " + c.Lastname + " ");
+            }
         }
     }
 }
