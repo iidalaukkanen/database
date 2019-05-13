@@ -3,19 +3,30 @@ using System.Collections.Generic;
 using System.Text;
 using BankApp.Models;
 using BankApp.Repositories;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace BankApp.Repositories
 {
     class TransactionRepository : ITransactionRepository
     {
+        private readonly BankdbContext _bankdbContext = new BankdbContext();
+        private static AccountRepository _accountrepository = new AccountRepository();
+
         public void CreateTransaction(Transaction transaction)
         {
-            throw new NotImplementedException();
+            _bankdbContext.Transaction.Add(transaction);
+            var account = _accountrepository.Read(transaction.Iban);
+            account.Balance += transaction.Amount;
+
+            _bankdbContext.Account.Update(account);
+            _bankdbContext.SaveChanges();
         }
 
         public List<Transaction> ReadTransactions()
         {
-            throw new NotImplementedException();
+            var transactions = _bankdbContext.Transaction.ToListAsync().Result;
+            return transactions;
         }
     }
 }
