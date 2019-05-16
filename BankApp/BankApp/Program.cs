@@ -30,62 +30,62 @@ namespace BankApp
                     case ConsoleKey.D1:
                         Console.Clear();
                         bankModel.PrintBanks();
-                        msg = "Paina Enter jatkaaksesi...";
+                        msg = "Paina nappulaa jatkaaksesi...";
                         break;
 
                     case ConsoleKey.D2:
                         Console.Clear();
                         bankModel.CreateBank();
-                        msg = "Paina Enter jatkaaksesi...";
+                        msg = "Paina nappulaa jatkaaksesi...";
                         break;
 
                     case ConsoleKey.D3:
                         Console.Clear();
                         bankModel.UpdateBank();
-                        msg = "Paina Enter jatkaaksesi...";
+                        msg = "Paina nappulaa jatkaaksesi...";
                         break;
 
                     case ConsoleKey.D4:
                         Console.Clear();
                         customerModel.PrintCustomers();
-                        msg = "Paina Enter jatkaaksesi...";
+                        msg = "Paina nappulaa jatkaaksesi...";
                         break;
 
                     case ConsoleKey.D5:
                         Console.Clear();
                         customerModel.CreateCustomer();
                         accountModel.CreateAccount();
-                        msg = "Paina Enter jatkaaksesi...";
+                        msg = "Paina nappulaa jatkaaksesi...";
                         break;
 
                     case ConsoleKey.D6:
                         Console.Clear();
                         customerModel.UpdateCustomer();
-                        msg = "Paina Enter jatkaaksesi...";
+                        msg = "Paina nappulaa jatkaaksesi...";
                         break;
 
                     case ConsoleKey.D7:
                         Console.Clear();
                         customerModel.DeleteCustomer();
-                        msg = "Paina Enter jatkaaksesi...";
+                        msg = "Paina nappulaa jatkaaksesi...";
                         break;
 
                     case ConsoleKey.D8:
                         Console.Clear();
                         accountModel.PrintAccounts();
-                        msg = "Paina Enter jatkaaksesi...";
+                        msg = "Paina nappulaa jatkaaksesi...";
                         break;
 
                     case ConsoleKey.D9:
                         Console.Clear();
                         accountModel.DeleteAccount();
-                        msg = "Paina Enter jatkaaksesi...";
+                        msg = "Paina nappulaa jatkaaksesi...";
                         break;
 
                     case ConsoleKey.D0:
                         Console.Clear();
                         accountModel.CreateTransaction();
-                        msg = "Paina Enter jatkaaksesi...";
+                        msg = "Paina nappulaa jatkaaksesi...";
                         break;
 
                     case ConsoleKey.Escape:
@@ -113,7 +113,7 @@ namespace BankApp
 
         private static ConsoleKeyInfo UserInterface()
         {
-            Console.WriteLine("_PANKKIOHJELMA_");
+            Console.WriteLine("     PANKKIOHJELMA");
             Console.WriteLine("___________________________________________");
             Console.WriteLine("Pankkien toiminnot:");
             Console.WriteLine("[1] Tulosta pankit.");
