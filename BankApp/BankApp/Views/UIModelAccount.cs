@@ -16,16 +16,16 @@ namespace BankApp.Views
         private static readonly TransactionRepository _transactionRepository = new TransactionRepository();
 
         Customer customer = _customerRepository.ReadCustomers()
-            .FirstOrDefault(name => name.Firstname == "Maija");
+            .FirstOrDefault(name => name.Firstname == "Matti");
 
         public void CreateAccount()
         {
             Account account = new Account()
             {
-                Iban = "FI001234123412341236",
-                BankId = 2,
+                Iban = "FI1234123412341239",
+                BankId = 4,
                 CustomerId = customer.Id,
-                Balance = 5000
+                Balance = 9000
             };
 
             _accountRepository.CreateAccount(account);
@@ -33,7 +33,7 @@ namespace BankApp.Views
 
         public void DeleteAccount()
         {
-            _accountRepository.DeleteAccount("FI001234123412341236");
+            _accountRepository.DeleteAccount("FI098765432187654321");
         }
 
         public void PrintAccounts()
@@ -59,7 +59,8 @@ namespace BankApp.Views
             Transaction transaction = new Transaction()
             {
                 Amount = 911,
-                Iban = "FI001234123412341236"
+                Iban = "FI1234123412341239",
+                TimeStamp = DateTime.Now
             };
 
             _transactionRepository.CreateTransaction(transaction);                

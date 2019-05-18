@@ -15,7 +15,8 @@ namespace BankApp.Repositories
         public void CreateBank(Bank bank)
         {
             _bankdbContext.Bank.Add(bank);
-            _bankdbContext.SaveChanges();            
+            _bankdbContext.SaveChanges();
+            Console.WriteLine("Uuden pankin luominen onnistui!");
         }
 
         public void DeleteBank(long id)
@@ -47,17 +48,11 @@ namespace BankApp.Repositories
         }
 
         public void UpdateBank(long id, Bank bank)
-        {
-            var isBankOk = ReadBank(id);
-            if (isBankOk != null)
-            {
+        { 
                 _bankdbContext.Update(bank);
                 _bankdbContext.SaveChanges();
-                Console.WriteLine("Tietojen tallennus onnistui!");
-            }
-
-            else
-                Console.WriteLine("Tietojen tallennus epäonnistui! - Kyseistä pankkia ei löydy.");
+                Console.WriteLine("Tietojen päivitys onnistui!");
+           
         }
     }
 }

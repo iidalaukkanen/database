@@ -21,6 +21,7 @@ namespace BankApp.Repositories
 
             _bankdbContext.Account.Update(account);
             _bankdbContext.SaveChanges();
+            Console.WriteLine("Tilitapahtumien päivitys onnistui!");
         }
 
         public List<Transaction> ReadTransactions()

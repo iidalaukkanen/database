@@ -37,10 +37,17 @@ namespace BankApp.Views
                 Console.WriteLine("Väärä syöte! Kirjoita numero.");
             }
 
-            Bank updateBank = _bankRepository.ReadBank(id);
-            updateBank.Name = "OP";
-            updateBank.Bic = "OKOYFIHH";
-            _bankRepository.UpdateBank(id, updateBank);
+            var isBankOk = _bankRepository.ReadBank(id);
+            if (isBankOk != null)
+            {
+                Bank updateBank = _bankRepository.ReadBank(id);
+                updateBank.Name = "OP";
+                updateBank.Bic = "OKOYFIHH";
+                _bankRepository.UpdateBank(id, updateBank);
+            }
+            else
+                Console.WriteLine("Tietojen päivitys epäonnistui! - Kyseistä pankkia ei löydy.");
+
         }
 
         public void PrintBanks()
